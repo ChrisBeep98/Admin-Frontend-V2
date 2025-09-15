@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Itinerary API
+  version: 1.0.0
+paths:
+  /tours/{tourId}/itinerary:
+    get:
+      summary: Get tour itinerary
+      parameters:
+        - name: tourId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of itinerary items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItineraryItem'
+    put:
+      summary: Update tour itinerary
+      parameters:
+        - name: tourId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ItineraryItem'
+      responses:
+        '200':
+          description: The updated itinerary
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItineraryItem'
+components:
+  schemas:
+    ItineraryItem:
+      type: object
+      properties:
+        id:
+          type: string
+        tourId:
+          type: string
+        day:
+          type: number
+        time:
+          type: string
+        activity:
+          type: string
+        location:
+          type: string
+        notes:
+          type: string

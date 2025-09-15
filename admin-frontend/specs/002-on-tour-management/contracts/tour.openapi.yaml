@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: Tour API
+  version: 1.0.0
+paths:
+  /tours/{tourId}:
+    get:
+      summary: Get tour details
+      parameters:
+        - name: tourId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single tour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+    put:
+      summary: Update tour details
+      parameters:
+        - name: tourId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tour'
+      responses:
+        '200':
+          description: The updated tour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tour'
+components:
+  schemas:
+    Tour:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        duration:
+          type: string
+        price:
+          type: number
+        status:
+          type: string
+          enum: [active, inactive, draft]
+        maxParticipants:
+          type: number
+        difficulty:
+          type: string
+        imageUrl:
+          type: string
