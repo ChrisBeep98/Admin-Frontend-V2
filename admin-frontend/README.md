@@ -1,69 +1,75 @@
-# React + TypeScript + Vite
+# Admin-Frontend-V2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Nevado Trek Admin Panel
 
-Currently, two official plugins are available:
+A React TypeScript admin frontend for managing the Nevado Trek tours application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tech Stack
+- **Framework**: React 18+ with TypeScript
+- **Build Tool**: Vite
+- **UI Library**: Material-UI (MUI) with dark theme
+- **Routing**: React Router DOM
+- **Authentication**: Token-based authentication
 
-## Expanding the ESLint configuration
+### Features
+- ✅ Secure token-based login system
+- ✅ Protected routes with authentication
+- ✅ Dashboard interface
+- ✅ Integration with Nevado Trek API
+- 🚧 Tours management (coming soon)
+- 🚧 Bookings management (coming soon)
+- 🚧 Itineraries management (coming soon)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Getting Started
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. **Install dependencies**:
+   ```bash
+   cd admin-frontend
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. **Access the application**:
+   - Open http://localhost:5173/login
+   - Enter the admin token to access the dashboard
+
+### API Integration
+
+The frontend connects to the Nevado Trek Supabase Edge Function:
+- **Base URL**: `https://donprqhxuezsyokucfht.supabase.co/functions/v1/nevado-trek-api`
+- **Authentication**: Bearer token required for admin actions
+- **Actions**: Supports full CRUD operations for tours, itineraries, and bookings
+
+### Project Structure
+
+```
+admin-frontend/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── contexts/       # React contexts (Auth)
+│   ├── pages/          # Page components
+│   ├── router/         # Routing configuration
+│   ├── services/       # API service functions
+│   └── main.tsx        # Application entry point
+├── public/             # Static assets
+└── package.json        # Dependencies and scripts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Build**: `npm run build`
+- **Lint**: `npm run lint`
+- **Preview**: `npm run preview`
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Architecture
+
+This admin panel is designed to work with the Nevado Trek backend system, providing a secure interface for managing:
+- Tours with pricing tiers and itineraries
+- Customer bookings with dynamic pricing
+- Multi-day tour activities and schedules
+
+For more details, see the architecture documentation in the parent directory.
